@@ -20,7 +20,7 @@ export default () => {
         setCollapsed(!collapsed);
     };
     //储存导航栏数据
-    const [itemdata, setItemData] = useState < ItemDataType[] > ([
+    const [itemdata, setItemData] = useState ([
         {
             label: "首页",
             key: "/project/home",
@@ -44,7 +44,7 @@ export default () => {
         </Radio.Group>
     }
     useEffect(() => {
-        const newdata = itemdata?.map((item) => {
+        const newdata:any = itemdata?.map((item) => {
             if (item.type === 1) {
                 return {
                     label: item.label,
@@ -72,7 +72,7 @@ export default () => {
                     theme="dark"
                     inlineCollapsed={collapsed}
                     items={items}
-                    onClick={({ item, key, keyPath, domEvent }) => redirect({ item, key, keyPath, domEvent })}
+                    onClick={({ key }) => redirect({ key })}
                 />
             </div>
             <div className='dv_project_route'>
@@ -84,10 +84,11 @@ export default () => {
                     <div className='dv_project_head_right'>
                         {/* 全屏 */}
                         <Tooltip title={headRendr} placement="bottomLeft" trigger='click' color="#fff" style={{ padding: 0 }}>
-                            <Avatar size='70' icon={<UserOutlined />} />
+                            <Avatar size={"default"} icon={<UserOutlined />} />
                         </Tooltip>
                     </div>
                 </div>
+                <div className='dv_main'>
                 <div className='dv_project_main'>
                 {
                    rout && rout?.map((item, index) => {
@@ -95,7 +96,7 @@ export default () => {
                     })
                 }
                 </div>
-                
+                </div>
             </div>
         </div>
     )

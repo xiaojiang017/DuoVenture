@@ -17,13 +17,21 @@
         }
     }
 }
-.dv_project_main {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #d8dce5;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px 0 #d8dce5;
+.dv_main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    .dv_project_main {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #d8dce5;
+        border-radius: 5px;
+        box-shadow: 2px 2px 2px 0 #d8dce5;
+        width: 96%;
+    }
 }
+
 
 .dv_project_taskList_content {
     .dv_project_taskList_search{
