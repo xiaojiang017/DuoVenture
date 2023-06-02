@@ -1,4 +1,4 @@
-import { Menu, Button, Avatar, Tooltip, Radio } from 'antd'
+import { Menu, Button, Avatar, Tooltip, Radio, Tag } from 'antd'
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -9,18 +9,22 @@ import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom';
 import './index.scss'
 import rout from '../../route/index.tsx';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 
 export default () => {
     const history = useHistory()
+    const location = useLocation()
     //导航栏开关
     const [collapsed, setCollapsed] = useState(false);
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
     };
+    //导航栏选中状态
+    const [chackmenu , setChackmenu] = useState([location.pathname])
+
     //储存导航栏数据
-    const [itemdata, setItemData] = useState ([
+    const [itemdata, setItemData] = useState([
         {
             label: "首页",
             key: "/project/home",
@@ -32,6 +36,12 @@ export default () => {
             type: 1
         }
     ])
+    //储存标签页数据
+    const [tagdata, settagdata] = useState([{
+        label: "首页",
+        key: "/project/home",
+        type: 1
+    },])
     //导航栏数据
     const [items, setItems] = useState([])
     // 登陆头像点击框
@@ -44,7 +54,7 @@ export default () => {
         </Radio.Group>
     }
     useEffect(() => {
-        const newdata:any = itemdata?.map((item) => {
+        const newdata = itemdata?.map((item) => {
             if (item.type === 1) {
                 return {
                     label: item.label,
@@ -56,17 +66,28 @@ export default () => {
         setItems(newdata)
     }, [itemdata])
 
-    const redirect = ({ key}) => {
-        // console.log(key)
-	    history.push({pathname: key})
+    //路由变化时执行
+    useEffect(() => {
+        setChackmenu([location.pathname])
+    } , [location])
+
+    const redirect = ({ key }) => {
+        const data = itemdata?.find((item) => item.key === key)
+        const isdata = tagdata?.find((item) => item.key === key)
+        if (!isdata) {
+            settagdata((tagedata) => {
+                return [...tagedata, data]
+            })
+        }
+        history.push({ pathname: key })
     }
 
     return (
         <div className='dv_project_content'>
             <div className='dv_project_menu'>
                 <Menu
+                    defaultSelectedKeys={chackmenu}
                     style={{ height: '100vh' }}
-                    defaultSelectedKeys={['1']}
                     defaultOpenKeys={['sub1']}
                     mode="inline"
                     theme="dark"
@@ -88,14 +109,21 @@ export default () => {
                         </Tooltip>
                     </div>
                 </div>
-                <div className='dv_main'>
-                <div className='dv_project_main'>
-                {
-                   rout && rout?.map((item, index) => {
-                    return  <Route path={item.path} component={item.component} key={index}/>
-                    })
-                }
+                <div className="dv_project_view">
+                    {
+                        tagdata?.map((item, index) => {
+                            return <Tag key={index} onClick={() => history.push({ pathname: item.key })}>{item.label}</Tag>
+                        })
+                    }
                 </div>
+                <div className='dv_main'>
+                    <div className='dv_project_main'>
+                        {
+                            rout && rout?.map((item, index) => {
+                                return <Route path={item.path} component={item.component} key={index} />
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         </div>

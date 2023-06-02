@@ -13,7 +13,7 @@ moment.locale('en');
 
 
 function App() {
-  const [locale, setLocal] = useState(enUS);
+  const [locale, setLocal] = useState(zhCN);
   return (
     <div className="App">
       <ConfigProvider locale={locale}>
