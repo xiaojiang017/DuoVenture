@@ -10,6 +10,7 @@ import { Route } from 'react-router-dom';
 import './index.scss'
 import rout from '../../route/index.tsx';
 import { useHistory, useLocation } from 'react-router-dom'
+import getlist from '../../api/projectListApi.ts';
 
 
 export default () => {
@@ -71,7 +72,7 @@ export default () => {
         setChackmenu([location.pathname])
     } , [location])
 
-    const redirect = ({ key }) => {
+    const redirect = async ({ key }) => {
         const data = itemdata?.find((item) => item.key === key)
         const isdata = tagdata?.find((item) => item.key === key)
         if (!isdata) {
@@ -79,6 +80,8 @@ export default () => {
                 return [...tagedata, data]
             })
         }
+       const a =  await getlist()
+       console.log(a)
         history.push({ pathname: key })
     }
 
