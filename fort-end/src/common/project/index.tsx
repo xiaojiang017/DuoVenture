@@ -10,7 +10,6 @@ import { Route } from 'react-router-dom';
 import './index.scss'
 import rout from '../../route/index.tsx';
 import { useHistory, useLocation } from 'react-router-dom'
-import getlist from '../../api/projectListApi.ts';
 
 
 export default () => {
@@ -80,8 +79,6 @@ export default () => {
                 return [...tagedata, data]
             })
         }
-       const a =  await getlist()
-       console.log(a)
         history.push({ pathname: key })
     }
 
