@@ -37,7 +37,7 @@ export default () => {
         }
     ])
     //储存标签页数据
-    const [tagdata, settagdata] = useState([{
+    const [tagdata, settagdata] = useState<any>([{
         label: "首页",
         key: "/project/home",
         type: 1
