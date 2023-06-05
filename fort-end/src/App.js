@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react'
-import Login from './common/login/index.tsx';
-import Project from './common/project/index.tsx';
+import Login from './common/login/index.jsx';
+import Project from './common/project/index.jsx';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { ConfigProvider , Radio} from 'antd';
 import enUS from 'antd/es/locale/en_US';

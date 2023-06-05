@@ -1,5 +1,5 @@
-import ProjectHome from "../common/project/projectHome/index.tsx";
-import TaskList from "../common/project/taskList/index.tsx"
+import ProjectHome from "../common/project/projectHome/index.jsx";
+import TaskList from "../common/project/taskList/index.jsx"
 
 const rout = [
     {

@@ -1,11 +1,3 @@
-export interface ItemDataType {
-    label: string,
-    key: string,
-    url?: string,
-    type: number, //1: 最外层一级 ， 2: 子集
-    fatherkey?: string , //父级的key
-}
-
 export const ptstatus = {
     1: "未开始",
     2: "开发中",

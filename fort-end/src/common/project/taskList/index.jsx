@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Input, Space, Table, Tag, Popconfirm, message, DatePicker , Select} from 'antd';
-import ConfigModal from './configModal/index.tsx';
+import ConfigModal from './configModal/index.jsx';
 import {getlist} from '../../../api/projectListApi.ts';
-import {ptstatus , ptstatuscolor , ptstatusData} from '../../project/index.ts'
+import {ptstatus , ptstatuscolor , ptstatusData} from '../index.js'
 
 const { RangePicker } = DatePicker;
 export default () => {
@@ -10,12 +10,6 @@ export default () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modaltype, setModaltype] = useState('add')
     const [tableData , setTableData] = useState([])
-    const confirm = (e: React.MouseEvent<HTMLElement>) => {
-        message.success('Click on Yes');
-    };
-    const cancel = (e: React.MouseEvent<HTMLElement>) => {
-        message.error('Click on No');
-    };
     const columns = [
         {
             title: '项目名称',
@@ -87,7 +81,6 @@ export default () => {
         }
     }
     useEffect(() => {
-        //获取初始值
         getList(0)
     },[])
     return (
