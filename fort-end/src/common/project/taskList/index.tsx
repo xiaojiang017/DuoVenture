@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Input, Space, Table, Tag, Popconfirm, message, DatePicker , Select} from 'antd';
 import ConfigModal from './configModal/index.tsx';
-import getlist from '../../../api/projectListApi.ts';
-import {ptstatus , ptstatuscolor} from '../../project/index.ts'
+import {getlist} from '../../../api/projectListApi.ts';
+import {ptstatus , ptstatuscolor , ptstatusData} from '../../project/index.ts'
 
 const { RangePicker } = DatePicker;
 export default () => {
@@ -68,6 +68,8 @@ export default () => {
     ];
     const onFinish = (values) => {
         console.log('Success:', values);
+        const {ptstatus} = values
+        getList(ptstatus)
         //搜索函数
     };
     //打开弹框
@@ -76,18 +78,17 @@ export default () => {
         setIsModalOpen(true)
     }
     const data = [];
-    const getList = async () => {
-        const {data , status} = await getlist()
+    const getList = async (ptstatus) => {
+        const {data , status} = await getlist({ptstatus: ptstatus}) || {}
         if(status === 200){
             setTableData(data.projectList)
         }else{
             message.error('出错了')
         }
-        
     }
     useEffect(() => {
         //获取初始值
-        getList()
+        getList(0)
     },[])
     return (
         <div className='dv_project_taskList_content'>
@@ -118,22 +119,9 @@ export default () => {
                         style={{ marginLeft: 20 }}
                     >
                         <Select
-                            defaultValue="lucy"
+                            defaultValue= {0}
                             style={{ width: 120 }}
-                            options={[
-                                {
-                                    value: 'jack',
-                                    label: 'Jack',
-                                },
-                                {
-                                    value: 'lucy',
-                                    label: 'Lucy',
-                                },
-                                {
-                                    value: 'Yiminghe',
-                                    label: 'yiminghe',
-                                },
-                            ]}
+                            options={ptstatusData}
                         />
                     </Form.Item>
                     <Form.Item

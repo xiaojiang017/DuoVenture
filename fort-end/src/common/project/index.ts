@@ -21,3 +21,30 @@ export const ptstatuscolor = {
     4: "orange",
     5: "gold"
 }
+
+export const ptstatusData = [
+    {
+        label: "全部",
+        value: 0
+    },
+    {
+        label: '未开始',
+        value: 1
+    },
+    {
+        label: '开发中',
+        value: 2
+    },
+    {
+        label: '待测试',
+        value: 3
+    },
+    {
+        label: '测试中',
+        value: 4
+    },
+    {
+        label: '已完成',
+        value: 5
+    }
+]
