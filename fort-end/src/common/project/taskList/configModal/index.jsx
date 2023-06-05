@@ -12,6 +12,7 @@ export default (props) => {
     form
       .validateFields()
       .then(values => {
+        console.log(values)
         form.resetFields();
         setIsModalOpen(false)
       })

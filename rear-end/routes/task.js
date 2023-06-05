@@ -1,71 +1,40 @@
 var express = require('express');
 var router = express.Router();
+const mysql2 = require('mysql2')
 
-router.post('/list', function(req, res, next) {
-  const data = { 
-    projectList: [
-      {
-        id: 1,
-        ptname: "项目1",
-        principal: '未开始',
-        pturl: 'www.baidu.com',
-        ptstatus: 1,
-        startTime: '2023-02-02',
-        endTime: '2023-05-12'
-      },
-      {
-        id: 2,
-        ptname: "项目2",
-        principal: '开发中',
-        pturl: 'www.baidu.com',
-        ptstatus: 2,
-        startTime: '2023-02-02',
-        endTime: '2023-05-12'
-      },
-      {
-        id: 3,
-        ptname: "项目3",
-        principal: '待测试',
-        pturl: 'www.baidu.com',
-        ptstatus: 3,
-        startTime: '2023-02-02',
-        endTime: '2023-05-12'
-      },
-      {
-        id: 4,
-        ptname: "项目4",
-        principal: '测试中',
-        pturl: 'www.baidu.com',
-        ptstatus: 4,
-        startTime: '2023-02-02',
-        endTime: '2023-05-12'
-      },
-      {
-        id: 5,
-        ptname: "项目5",
-        principal: '已完成',
-        pturl: 'www.baidu.com',
-        ptstatus: 5,
-        startTime: '2023-02-02',
-        endTime: '2023-05-12'
-      }
-    ]
-   };
-  // const ptstatus = req.body?.ptstatus 
-  console.log(req.body?.ptstatus)
-  let resdata
-  if(ptstatus === 0)  {
-    resdata = data.projectList
-  }else{
-    resdata = data.projectList?.map((item) => {
-      if(ptstatus === item.ptstatus){
-        return item
-      }
-    })?.filter((ft) => typeof ft !== 'undefined')
+
+router.post('/list', async function (req, res, next) {
+  const { ptname, principal, ptstatus, startTime, endTime } = req.body?.ptstatus
+  const config = getDBConfig()
+  const promisePool = mysql2.createPool(config).promise()
+  let sql = `select * from projecrlist where `
+  const pt = []
+  for(var key in { ptname, principal, ptstatus, startTime, endTime }) {
+    if({ ptname, principal, ptstatus, startTime, endTime }[key]){
+      sql = sql + `${key} =? and`
+      pt.push({ ptname, principal, ptstatus, startTime, endTime }[key])
+    }
   }
+  if(ptstatus === '0') {
+    sql = 'select * from projecrlist'
+  }else{
+    sql = sql.slice(0, -3);
+  }
+  const users = await promisePool.query(sql, pt)
   res.send({
-    projectList: resdata
-    });
+    projectList: [...users[0]]
+  });
 });
+
+function getDBConfig() {
+  return {
+    host: "127.0.0.1",
+    port: 3306,
+    user: 'root',
+    password: "yhj0107",
+    database: "project",
+    connectionLimit: 1
+  }
+}
 
 module.exports = router;

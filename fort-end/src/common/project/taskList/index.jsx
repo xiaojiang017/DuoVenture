@@ -74,17 +74,18 @@ export default () => {
         setIsModalOpen(true)
     }
     const getList = async (ptstatus) => {
-        const data = await getlist({ptstatus: ptstatus}) || {}
-        console.log(data , 'asas')
-        // if(status === 200){
-        //     setTableData(data.projectList)
-        // }else{
-        //     message.error('1')
-        // }
+        const {data , status} = await getlist({ptstatus: ptstatus}) || {}
+        console.log(status)
+        if(status === 200){
+            console.log(data)
+            setTableData(data.projectList)
+        }else{
+            message.error('出错了')
+        }
     }
     useEffect(() => {
         getList({
-            ptstatus: 0
+            ptstatus: "0"
         })
     },[])
     return (
