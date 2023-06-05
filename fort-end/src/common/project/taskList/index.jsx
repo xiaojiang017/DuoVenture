@@ -61,27 +61,31 @@ export default () => {
         },
     ];
     const onFinish = (values) => {
-        console.log('Success:', values);
-        const {ptstatus} = values
-        getList(ptstatus)
-        //搜索函数
+        const parameter = {
+            ...values,
+            startTime: values['time']?.[0].format('YYYY-MM-DD'),
+            endTime: values['time']?.[1].format('YYYY-MM-DD')
+        }
+        getList(parameter)
     };
     //打开弹框
     const openmodal = (type) => {
         setModaltype(type)
         setIsModalOpen(true)
     }
-    const data = [];
     const getList = async (ptstatus) => {
-        const {data , status} = await getlist({ptstatus: ptstatus}) || {}
-        if(status === 200){
-            setTableData(data.projectList)
-        }else{
-            message.error('出错了')
-        }
+        const data = await getlist({ptstatus: ptstatus}) || {}
+        console.log(data , 'asas')
+        // if(status === 200){
+        //     setTableData(data.projectList)
+        // }else{
+        //     message.error('1')
+        // }
     }
     useEffect(() => {
-        getList(0)
+        getList({
+            ptstatus: 0
+        })
     },[])
     return (
         <div className='dv_project_taskList_content'>
@@ -89,7 +93,7 @@ export default () => {
                 <Form
                     className='dv_project_taskList_search'
                     name="basic"
-                    initialValues={{ remember: true }}
+                    initialValues={{ ptstatus: 0 }}
                     onFinish={onFinish}
                     autoComplete="off"
                 >
@@ -112,7 +116,6 @@ export default () => {
                         style={{ marginLeft: 20 }}
                     >
                         <Select
-                            defaultValue= {0}
                             style={{ width: 120 }}
                             options={ptstatusData}
                         />

@@ -51,7 +51,8 @@ router.post('/list', function(req, res, next) {
       }
     ]
    };
-  const ptstatus = req.body?.ptstatus 
+  // const ptstatus = req.body?.ptstatus 
+  console.log(req.body?.ptstatus)
   let resdata
   if(ptstatus === 0)  {
     resdata = data.projectList
