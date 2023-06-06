@@ -1,5 +1,6 @@
 import ProjectHome from "../common/project/projectHome/index.jsx";
 import TaskList from "../common/project/taskList/index.jsx"
+import ArticleList from "../common/project/articleList/index.jsx";
 
 const rout = [
     {
@@ -9,6 +10,10 @@ const rout = [
     {
         path: '/project/taskList',
         component: TaskList
-    }
+    },
+    // {
+    //     path: '/project/articleList',
+    //     component: ArticleList
+    // }
 ]
 export default rout

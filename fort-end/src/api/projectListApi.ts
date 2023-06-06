@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 
+//任务列表查询接口
 export const getlist = async (data) => {
    return await axios.post('http://localhost:8080/task/list' , data).then((res) => {
        return res
@@ -8,4 +9,5 @@ export const getlist = async (data) => {
         return err
     })
 }
+//新增接口
 

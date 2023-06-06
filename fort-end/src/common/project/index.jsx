@@ -3,7 +3,10 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
     UserOutlined,
-    HomeOutlined
+    HomeOutlined,
+    PlusOutlined,
+    UnorderedListOutlined,
+    OrderedListOutlined
 } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom';
@@ -21,27 +24,34 @@ export default () => {
         setCollapsed(!collapsed);
     };
     //导航栏选中状态
-    const [chackmenu , setChackmenu] = useState([location.pathname])
+    const [chackmenu, setChackmenu] = useState([location.pathname])
 
     //储存导航栏数据
     const [itemdata, setItemData] = useState([
         {
             label: "首页",
             key: "/project/home",
+            icon: <HomeOutlined />,
             type: 1
         },
         {
             label: "任务列表",
             key: "/project/taskList",
+            icon: <UnorderedListOutlined />,
             type: 1
+        },
+        {
+            label: "项目列表",
+            key: "/project/articleList",
+            icon: <OrderedListOutlined />,
+            type: 12
+        },
+        {
+            label: "添加任务",
+            key: "/project",
+            type: 121
         }
     ])
-    //储存标签页数据
-    const [tagdata, settagdata] = useState([{
-        label: "首页",
-        key: "/project/home",
-        type: 1
-    },])
     //导航栏数据
     const [items, setItems] = useState([])
     // 登陆头像点击框
@@ -59,27 +69,47 @@ export default () => {
                 return {
                     label: item.label,
                     key: item.key,
-                    icon: <HomeOutlined />,
+                    icon: item.icon,
+                }
+            } else if (item.type === 12) {
+                return {
+                    label: item.label,
+                    key: item.key,
+                    icon: item.icon,
+                    children: itemdata?.map((it) => {
+                        if(it.type === 122){
+                            return {
+                                label: item.label,
+                                key: item.key,
+                            }
+                        }
+                        if (it.type === 121) {
+                            return {
+                                label: <Button icon={<PlusOutlined />}>
+                                    {it.label}
+                                </Button>,
+                                key: it.key,
+                            }
+                        }
+                    })?.filter((ft) => typeof ft !== 'undefined')
                 }
             }
-        })
+        })?.filter((ft) => typeof ft !== 'undefined')
         setItems(newdata)
     }, [itemdata])
 
     //路由变化时执行
     useEffect(() => {
         setChackmenu([location.pathname])
-    } , [location])
+    }, [location])
 
     const redirect = async ({ key }) => {
-        const data = itemdata?.find((item) => item.key === key)
-        const isdata = tagdata?.find((item) => item.key === key)
-        if (!isdata) {
-            settagdata((tagedata) => {
-                return [...tagedata, data]
-            })
+        if(key.includes('articleList')){
+            console.log('dasadsa')
+        }else{
+            history.push({ pathname: key })
         }
-        history.push({ pathname: key })
+       
     }
 
     return (
@@ -108,13 +138,6 @@ export default () => {
                             <Avatar size={"default"} icon={<UserOutlined />} />
                         </Tooltip>
                     </div>
-                </div>
-                <div className="dv_project_view">
-                    {
-                        tagdata?.map((item, index) => {
-                            return <Tag key={index} onClick={() => history.push({ pathname: item.key })}>{item.label}</Tag>
-                        })
-                    }
                 </div>
                 <div className='dv_main'>
                     <div className='dv_project_main'>

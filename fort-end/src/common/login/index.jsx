@@ -4,11 +4,11 @@ import './index.scss'
 
 export default () => {
 
-    const onFinish = (values: any) => {
+    const onFinish = (values) => {
         console.log('Success:', values);
     };
 
-    const onFinishFailed = (errorInfo: any) => {
+    const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
     return (
