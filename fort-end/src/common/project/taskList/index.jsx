@@ -75,7 +75,6 @@ export default () => {
     }
     const getList = async (ptstatus) => {
         const {data , status} = await getlist({ptstatus: ptstatus}) || {}
-        console.log(status)
         if(status === 200){
             console.log(data)
             setTableData(data.projectList)

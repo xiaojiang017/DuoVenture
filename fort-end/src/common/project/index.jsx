@@ -1,4 +1,4 @@
-import { Menu, Button, Avatar, Tooltip, Radio, Tag } from 'antd'
+import { Menu, Button, Avatar, Tooltip, Radio, Tag , Modal} from 'antd'
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -6,20 +6,22 @@ import {
     HomeOutlined,
     PlusOutlined,
     UnorderedListOutlined,
-    OrderedListOutlined
+    OrderedListOutlined,
+    DiffOutlined
 } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom';
 import './index.scss'
-import rout from '../../route/index.tsx';
+import rout from '../../route/index.jsx';
 import { useHistory, useLocation } from 'react-router-dom'
-
 
 export default () => {
     const history = useHistory()
     const location = useLocation()
     //导航栏开关
     const [collapsed, setCollapsed] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
     };
@@ -42,15 +44,21 @@ export default () => {
         },
         {
             label: "项目列表",
-            key: "/project/articleList",
+            key: "/project",
             icon: <OrderedListOutlined />,
             type: 12
         },
         {
             label: "添加任务",
-            key: "/project",
+            key: "/project/addproject",
             type: 121
-        }
+        },
+        {
+            label: '文档编写',
+            icon: <DiffOutlined />,
+            key: "/project/writeDocument",
+            type: 1
+        },
     ])
     //导航栏数据
     const [items, setItems] = useState([])
@@ -77,7 +85,7 @@ export default () => {
                     key: item.key,
                     icon: item.icon,
                     children: itemdata?.map((it) => {
-                        if(it.type === 122){
+                        if (it.type === 122) {
                             return {
                                 label: item.label,
                                 key: item.key,
@@ -104,13 +112,19 @@ export default () => {
     }, [location])
 
     const redirect = async ({ key }) => {
-        if(key.includes('articleList')){
-            console.log('dasadsa')
-        }else{
+        if (key.includes('addproject')) {
+            setIsModalOpen(true)
+        } else {
             history.push({ pathname: key })
         }
-       
     }
+    const handleOk = () => {
+        setIsModalOpen(false);
+      };
+    
+      const handleCancel = () => {
+        setIsModalOpen(false);
+      };
 
     return (
         <div className='dv_project_content'>
@@ -148,6 +162,11 @@ export default () => {
                         }
                     </div>
                 </div>
+                <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Modal>
             </div>
         </div>
     )

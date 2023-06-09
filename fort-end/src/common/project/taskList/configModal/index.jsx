@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Form, Input } from 'antd';
+import { Modal, Form, Input } from 'antd';
 
 export default (props) => {
   const [form] = Form.useForm();
