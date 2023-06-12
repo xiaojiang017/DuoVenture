@@ -54,3 +54,7 @@
 }
 
 
+.dv_project_scroll-container {
+    overflow-y: auto;
+    max-height: 300px; /* 调整滚动容器的高度 */
+  }

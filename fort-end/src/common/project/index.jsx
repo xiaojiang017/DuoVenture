@@ -7,7 +7,8 @@ import {
     PlusOutlined,
     UnorderedListOutlined,
     OrderedListOutlined,
-    DiffOutlined
+    DiffOutlined,
+    DragOutlined
 } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom';
@@ -49,6 +50,11 @@ export default () => {
             type: 12
         },
         {
+            label: "页面",
+            key: "/project/articleList",
+            type: 122
+        },
+        {
             label: "添加任务",
             key: "/project/addproject",
             type: 121
@@ -59,16 +65,20 @@ export default () => {
             key: "/project/writeDocument",
             type: 1
         },
+        {
+            label: '拖拽',
+            icon: <DragOutlined />,
+            key: "/project/drag",
+            type: 1
+        },
     ])
     //导航栏数据
     const [items, setItems] = useState([])
     // 登陆头像点击框
     const headRendr = () => {
-        return <Radio.Group defaultValue="a" buttonStyle="solid" style={{ display: 'flex', flexDirection: "column" }}>
-            <Radio.Button value="a">Hangzhou</Radio.Button>
-            <Radio.Button value="b">Shanghai</Radio.Button>
-            <Radio.Button value="c">Beijing</Radio.Button>
-            <Radio.Button value="d">Chengdu</Radio.Button>
+        return <Radio.Group buttonStyle="solid" style={{ display: 'flex', flexDirection: "column" }}>
+            <Radio.Button value="a">权限管理</Radio.Button>
+            <Radio.Button value="b">登出</Radio.Button>
         </Radio.Group>
     }
     useEffect(() => {
@@ -87,8 +97,8 @@ export default () => {
                     children: itemdata?.map((it) => {
                         if (it.type === 122) {
                             return {
-                                label: item.label,
-                                key: item.key,
+                                label: it.label,
+                                key: it.key,
                             }
                         }
                         if (it.type === 121) {
@@ -147,7 +157,6 @@ export default () => {
                     </Button>
                     <span style={{ color: '#97a8be' }}>首页</span>
                     <div className='dv_project_head_right'>
-                        {/* 全屏 */}
                         <Tooltip title={headRendr} placement="bottomLeft" trigger='click' color="#fff" style={{ padding: 0 }}>
                             <Avatar size={"default"} icon={<UserOutlined />} />
                         </Tooltip>
