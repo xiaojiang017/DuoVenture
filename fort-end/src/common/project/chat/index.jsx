@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Typography, Empty, Input , Button } from 'antd';
-import {getchat} from '../../../api/chat.js'
+// import {getchat} from '../../../api/chat.js'
 const { TextArea } = Input;
 
 export default () => {

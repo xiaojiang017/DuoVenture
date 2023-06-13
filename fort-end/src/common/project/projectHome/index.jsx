@@ -85,7 +85,7 @@ export default () => {
           />
       </div>
       <div style={{ width: '50%' }}>
-        <Calendar />
+        <Calendar/>
       </div>
     </div>
   )

@@ -4,23 +4,25 @@ import './index.scss'
 import { useHistory, useLocation } from 'react-router-dom'
 import loginimg from './picture/login-img.png'; 
 import loginlogo from './picture/login_logo.png'
+import {loginPort} from '../../api/login.js'
 
 export default () => {
     const history = useHistory()
-    const userconfig = [
-        {
-            username: 'admin',
-            password: 'admin',
-            power: 1
-        }
-    ]
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const { username, password } = values
-        const istrue = userconfig.some((item) => item.username === username && item.password === password)
-        if (istrue) {
+        const data =  await loginPort({loginMessage: {
+            username,
+            password
+        }})
+        if (data?.data?.istrue) {
             history.push({ pathname: '/project/home' })
+            message.success('登陆成功' , 10)
         } else {
-            message.error('用户名或密码错误');
+            if(data.message){
+                message.error(data.message);
+            }else{
+                message.error('用户名或密码错误');
+            }
         }
     };
     return (
