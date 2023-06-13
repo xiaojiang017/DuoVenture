@@ -36,7 +36,7 @@ export default () => {
   } , [html])
   return (
     <div>
-     <Button type="primary" icon={sendEditor ? <CheckOutlined /> : <SnippetsOutlined />} onClick={sendhand}/>
+     <div ><Button type="primary" icon={sendEditor ? <CheckOutlined /> : <SnippetsOutlined />} onClick={sendhand}/></div>
       <div style={{ border: '1px solid #ccc', zIndex: 100 }}>
         <Toolbar
           editor={editor}

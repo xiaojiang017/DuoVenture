@@ -8,7 +8,8 @@ import {
     UnorderedListOutlined,
     OrderedListOutlined,
     DiffOutlined,
-    DragOutlined
+    DragOutlined,
+    WechatOutlined
 } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom';
@@ -69,6 +70,12 @@ export default () => {
             label: '拖拽',
             icon: <DragOutlined />,
             key: "/project/drag",
+            type: 1
+        },
+        {
+            label: '聊天',
+            icon: <WechatOutlined />,
+            key: "/project/chat",
             type: 1
         },
     ])

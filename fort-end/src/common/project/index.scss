@@ -58,3 +58,21 @@
     overflow-y: auto;
     max-height: 300px; /* 调整滚动容器的高度 */
   }
+
+.dv_project_chat_home {
+    display: flex;
+    flex-direction: row;
+    .dv_project_chat_show {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+        .dv_project_chat_input{
+            position: absolute;
+            display: flex;
+            bottom: 0px;
+            left: 0px;
+        }
+    }
+}
