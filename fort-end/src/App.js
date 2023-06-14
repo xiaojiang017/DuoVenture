@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Login from './common/login/index.jsx';
 import Project from './common/project/index.jsx';
 import { Redirect, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
@@ -16,13 +16,15 @@ function App() {
   return (
     <div className="App">
       <ConfigProvider locale={locale}>
-      <Router>
-        <Route path="/">
-          <Redirect to="/login" />
-        </Route>
-        <Route path="/login" component={Login} />
-        <Route path="/project" component={Project} />
-      </Router>
+        <Router>
+          {
+            !localStorage.token && <Route path="/">
+              <Redirect to="/login" />
+            </Route>
+          }
+          <Route path="/login" component={Login} />
+          <Route path="/project" component={Project} />
+        </Router>
       </ConfigProvider>
     </div>
   );

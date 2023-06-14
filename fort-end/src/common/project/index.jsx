@@ -9,7 +9,8 @@ import {
     OrderedListOutlined,
     DiffOutlined,
     DragOutlined,
-    WechatOutlined
+    WechatOutlined,
+    UserSwitchOutlined
 } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom';
@@ -78,6 +79,12 @@ export default () => {
             key: "/project/chat",
             type: 1
         },
+        {
+            label: '人员信息',
+            icon: <UserSwitchOutlined />,
+            key: "/project/userMessage",
+            type: 1
+        },
     ])
     //导航栏数据
     const [items, setItems] = useState([])
@@ -85,7 +92,7 @@ export default () => {
     const headRendr = () => {
         return <Radio.Group buttonStyle="solid" style={{ display: 'flex', flexDirection: "column" }}>
             <Radio.Button value="a">权限管理</Radio.Button>
-            <Radio.Button value="b">登出</Radio.Button>
+            <Radio.Button value="b" onClick={() => {localStorage.removeItem('token');history.push({ pathname: '/login' })}}>登出</Radio.Button>
         </Radio.Group>
     }
     useEffect(() => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Input, message } from 'antd';
 import './index.scss'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import loginimg from './picture/login-img.png'; 
 import loginlogo from './picture/login_logo.png'
 import {loginPort} from '../../api/login.js'
@@ -15,6 +15,7 @@ export default () => {
             password
         }})
         if (data?.data?.istrue) {
+            localStorage.setItem("token", data.data.token);
             history.push({ pathname: '/project/home' })
             message.success('登陆成功' , 10)
         } else {

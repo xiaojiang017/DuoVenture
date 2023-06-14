@@ -4,7 +4,7 @@ import ArticleList from "../common/project/articleList/index.jsx";
 import WriteDocument from "../common/project/writeDocument/index.jsx";
 import Drag from "../common/project/drag/index.jsx";
 import Chat from "../common/project/chat/index.jsx";
-
+import UserMessage from "../common/project/userMessage/index.jsx";
 const rout = [
     {
         path: '/project/home',
@@ -29,6 +29,10 @@ const rout = [
     {
         path: '/project/chat',
         component: Chat 
+    },
+    {
+        path: '/project/userMessage',
+        component: UserMessage  
     }
 ]
 export default rout
