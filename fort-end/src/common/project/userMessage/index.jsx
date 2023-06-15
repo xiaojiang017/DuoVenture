@@ -53,6 +53,7 @@ const data = [
         statue: 2,
     },
 ];
+
 export default () => {
     return (
         <div>

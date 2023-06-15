@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Typography, Empty, Input , Button } from 'antd';
+import { List, Typography, Empty, Input, Button } from 'antd';
 // import {getchat} from '../../../api/chat.js'
 const { TextArea } = Input;
 
@@ -21,7 +21,7 @@ export default () => {
                     dataSource={data}
                     renderItem={(item) => (
                         <List.Item>
-                         {item}
+                            {item}
                         </List.Item>
                     )}
                 />
@@ -30,10 +30,14 @@ export default () => {
                 <div>
                     <Empty />
                 </div>
-                <div className='dv_project_chat_input'>
-                    <TextArea rows={2} />
+                <div className='dv_project_chat'>
+                    <div className='dv_project_chat_input'>
+                        <TextArea rows={2} />
+                    </div>
+                    <div className='dv_project_chat_btn'>
+                    <Button type="primary">发送</Button>
+                    </div>
                 </div>
-                {/* <Button type="primary" onClick={() => getchat({userInput: "你好"})}>发送</Button> */}
             </div>
         </div>
     )

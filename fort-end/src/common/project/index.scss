@@ -1,33 +1,39 @@
 .dv_project_content {
     display: flex;
-    flex-direction: row ;
+    flex-direction: row;
+
     .dv_project_route {
         flex-grow: 1;
     }
+
     .dv_project_head {
         height: 50px;
         width: 100%;
         line-height: 50px;
         border-bottom: 1px solid #d8dce5;
-        .dv_project_head_right{
+
+        .dv_project_head_right {
             float: right;
             height: 100%;
             line-height: 50px;
             margin-right: 30px;
         }
     }
-    .dv_project_view{
+
+    .dv_project_view {
         height: 30px;
         border-bottom: 1px solid #d8dce5;
         box-shadow: 2px 2px 2px 0 #d8dce5;
         padding: 3px;
     }
 }
+
 .dv_main {
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
+
     .dv_project_main {
         margin: 10px;
         padding: 10px;
@@ -40,7 +46,7 @@
 
 
 .dv_project_taskList_content {
-    .dv_project_taskList_search{
+    .dv_project_taskList_search {
         display: flex;
         height: 100px;
         align-items: center;
@@ -56,23 +62,35 @@
 
 .dv_project_scroll-container {
     overflow-y: auto;
-    max-height: 300px; /* 调整滚动容器的高度 */
-  }
+    max-height: 300px;
+    /* 调整滚动容器的高度 */
+}
 
 .dv_project_chat_home {
     display: flex;
     flex-direction: row;
+
     .dv_project_chat_show {
         display: flex;
         justify-content: center;
         flex-direction: column;
         width: 100%;
         position: relative;
-        .dv_project_chat_input{
+
+        .dv_project_chat {
+            width: 100%;
             position: absolute;
-            display: flex;
             bottom: 0px;
             left: 0px;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            .dv_project_chat_btn {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
         }
+
     }
 }
