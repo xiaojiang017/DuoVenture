@@ -1,82 +1,63 @@
 import React from 'react'
-import { Space, Table, Tag } from 'antd';
+import { Space, Table, Tag, Button } from 'antd';
 
 const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
+        title: '账号',
+        dataIndex: 'username',
+        key: 'username',
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
+        title: '密码',
+        dataIndex: 'password',
+        key: 'password',
+        render: (text) => <div>*******</div>,
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
+        title: '状态',
+        dataIndex: 'statue',
+        key: 'statue',
+        render: (text) => {
+            switch (text) {
+                case 1:
+                   return <Tag color="#2db7f5">开启</Tag>
+                    break;
+                case 2:
+                   return <Tag color="#f50">关闭</Tag>
+                    break;
             }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
+        }
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-        <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
-        </Space>
-      ),
+        title: '操作',
+        key: 'action',
+        render: (_, record) => (
+            <Space size="middle">
+                <a>编辑</a>
+                <a>删除</a>
+            </Space>
+        ),
     },
-  ];
-  const data = [
+];
+const data = [
     {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
+        key: '1',
+        username: 'admin',
+        password: 'admin',
+        statue: 1,
     },
     {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
+        key: '2',
+        username: 'user',
+        password: "user",
+        statue: 2,
     },
-  ];
-export default () =>{
-  return (
-    <div>
-      <div>人员列表</div>
-      <Table columns={columns} dataSource={data} />
-    </div>
-  )
+];
+export default () => {
+    return (
+        <div>
+            <div><Button type="primary">添加人员</Button></div>
+            <Table columns={columns} dataSource={data} />
+        </div>
+    )
 }

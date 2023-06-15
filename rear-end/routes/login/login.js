@@ -15,7 +15,6 @@ const loginmessage = [
         power: 1
     }
 ]
-
 router.post('/', async function (req, res, next) {
     const { username, password } = req.body?.loginMessage
     const istrue = loginmessage.some((item) => item.username === username && item.password === password)
