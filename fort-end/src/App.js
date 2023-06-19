@@ -2,6 +2,8 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import Login from './common/login/index.jsx';
 import Project from './common/project/index.jsx';
+import Earningedtail from "./common/project/earnings/earningedtail.jsx";
+
 import { Redirect, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { ConfigProvider, Radio } from 'antd';
 import enUS from 'antd/es/locale/en_US';

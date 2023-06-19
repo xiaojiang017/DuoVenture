@@ -10,7 +10,8 @@ import {
     DiffOutlined,
     DragOutlined,
     WechatOutlined,
-    UserSwitchOutlined
+    UserSwitchOutlined,
+    BarChartOutlined
 } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom';
@@ -30,7 +31,6 @@ export default () => {
     };
     //导航栏选中状态
     const [chackmenu, setChackmenu] = useState([location.pathname])
-
     //储存导航栏数据
     const [itemdata, setItemData] = useState([
         {
@@ -83,6 +83,12 @@ export default () => {
             label: '人员信息',
             icon: <UserSwitchOutlined />,
             key: "/project/userMessage",
+            type: 1
+        },
+        {
+            label: '收入明细',
+            icon: <BarChartOutlined />,
+            key: "/project/earning",
             type: 1
         },
     ])

@@ -76,10 +76,9 @@ export default () => {
     const getList = async (ptstatus) => {
         const {data , status} = await getlist({ptstatus: ptstatus}) || {}
         if(status === 200){
-            console.log(data)
             setTableData(data.projectList)
         }else{
-            // message.error('出错了')
+            message.error('出错了')
         }
     }
     useEffect(() => {

@@ -5,6 +5,7 @@ import WriteDocument from "../common/project/writeDocument/index.jsx";
 import Drag from "../common/project/drag/index.tsx";
 import Chat from "../common/project/chat/index.jsx";
 import UserMessage from "../common/project/userMessage/index.jsx";
+import Earningedtail from "../common/project/earnings/earningedtail.jsx";
 
 const rout = [
     {
@@ -34,6 +35,10 @@ const rout = [
     {
         path: '/project/userMessage',
         component: UserMessage  
+    },
+    {
+        path: '/project/earning',
+        component: Earningedtail  
     }
 ]
 
