@@ -18,7 +18,7 @@ function App() {
       <ConfigProvider locale={locale}>
         <Router>
           {
-            !localStorage.token && <Route path="/">
+            !localStorage.dvtoken && <Route path="/">
               <Redirect to="/login" />
             </Route>
           }

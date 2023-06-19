@@ -15,7 +15,7 @@ export default () => {
             password
         }})
         if (data?.data?.istrue) {
-            localStorage.setItem("token", data.data.token);
+            localStorage.setItem("dvtoken", data.data.token);
             history.push({ pathname: '/project/home' })
             message.success('登陆成功' , 10)
         } else {
