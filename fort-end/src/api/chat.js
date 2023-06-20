@@ -1,7 +1,7 @@
 import axios from 'axios';
 const axiosInstance = axios.create({
     timeout: 200000,
-    headers: { 'Authorization': 'Bearer  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' }
+    headers: { 'Authorization': 'Bearer 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' }
 });
 export const chatApi = async (data) => {
    return await axiosInstance.post('https://api.openai-proxy.com/v1/chat/completions' , {
