@@ -1,4 +1,4 @@
-import { Menu, Button, Avatar, Tooltip, Radio, Tag , Modal} from 'antd'
+import { Menu, Button, Avatar, Tooltip, Radio, Tag, Modal } from 'antd'
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -98,7 +98,7 @@ export default () => {
     const headRendr = () => {
         return <Radio.Group buttonStyle="solid" style={{ display: 'flex', flexDirection: "column" }}>
             <Radio.Button value="a">权限管理</Radio.Button>
-            <Radio.Button value="b" onClick={() => {localStorage.removeItem('token');history.push({ pathname: '/login' })}}>登出</Radio.Button>
+            <Radio.Button value="b" onClick={() => { localStorage.removeItem('token'); history.push({ pathname: '/login' }) }}>登出</Radio.Button>
         </Radio.Group>
     }
     useEffect(() => {
@@ -135,7 +135,6 @@ export default () => {
         })?.filter((ft) => typeof ft !== 'undefined')
         setItems(newdata)
     }, [itemdata])
-
     //路由变化时执行
     useEffect(() => {
         setChackmenu([location.pathname])
@@ -150,12 +149,10 @@ export default () => {
     }
     const handleOk = () => {
         setIsModalOpen(false);
-      };
-    
-      const handleCancel = () => {
+    };
+    const handleCancel = () => {
         setIsModalOpen(false);
-      };
-
+    };
     return (
         <div className='dv_project_content'>
             <div className='dv_project_menu'>

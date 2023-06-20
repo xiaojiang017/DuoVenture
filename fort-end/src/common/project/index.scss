@@ -69,28 +69,15 @@
 .dv_project_chat_home {
     display: flex;
     flex-direction: row;
-
-    .dv_project_chat_show {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
+    .dv_project_chat_room {
         width: 100%;
+        min-height: 500px;
         position: relative;
-
-        .dv_project_chat {
-            width: 100%;
+        .dv_project_chat_room_input {
             position: absolute;
             bottom: 0px;
-            left: 0px;
             display: flex;
-            justify-content: center;
-            flex-direction: row;
-            .dv_project_chat_btn {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-            }
+            width: 100%;
         }
-
     }
 }
