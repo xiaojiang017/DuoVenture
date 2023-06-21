@@ -5,7 +5,7 @@ import { message, Modal, Form, Input } from 'antd';
 import axios from 'axios';
 
 export default () => {
-    const [apikey, setApikey] = useState('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')
+    const [apikey, setApikey] = useState('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')
     //为了吧apikey暴露出去，选择将api写在组件里面，后面有好的想法在改回去
     const axiosInstance = axios.create({
         timeout: 200000,
