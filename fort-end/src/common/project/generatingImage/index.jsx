@@ -5,7 +5,7 @@ import axios from 'axios';
 export default () => {
     const [url, setUrl] = useState([])
     const [imgloading , setImgloading] = useState(false)
-    const [apikey, setApikey] = useState('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')
+    const [apikey, setApikey] = useState('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')
     //为了吧apikey暴露出去，选择将api写在组件里面，后面有好的想法在改回去
     const axiosInstance = axios.create({
         timeout: 200000,
@@ -30,7 +30,7 @@ export default () => {
         if(imagedata?.data){
             setUrl(imagedata.data.data)
         }else{
-            message.error('出错了，你的关键词有敏感词')
+            message.error('出错了，你的关键词有敏感词或者你的key过期了')
         }
         setImgloading(false)
     };
