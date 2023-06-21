@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import ChatRoom from './chatRoom.jsx';
 import ChatList from './chatList.jsx';
-import { message , Modal , Form , Input} from 'antd';
+import { message, Modal, Form, Input } from 'antd';
 import axios from 'axios';
 
 export default () => {
-    const [apikey, setApikey] = useState('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')
+    const [apikey, setApikey] = useState('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')
     //为了吧apikey暴露出去，选择将api写在组件里面，后面有好的想法在改回去
     const axiosInstance = axios.create({
         timeout: 200000,
-        headers: { 'Authorization': `Bearer ${apikey}` }
+        headers: { 'Authorization': `Bearer ${apikey}` },
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [form] = Form.useForm();
     const handleOk = () => {
         form
-        .validateFields()
-        .then(values => {
-          form.resetFields();
-          setApikey(values.apikey)
-        })
-        .catch(info => {
-          console.log('Validate Failed:', info);
-        });
+            .validateFields()
+            .then(values => {
+                form.resetFields();
+                setApikey(values.apikey)
+            })
+            .catch(info => {
+                console.log('Validate Failed:', info);
+            });
         setIsModalOpen(false);
     };
 
@@ -34,12 +34,13 @@ export default () => {
             "model": "gpt-3.5-turbo",
             "temperature": 0.2,
             // "stream": true,
-            "messages": data
-        }).then((res) => {
-            return res
-        }).catch((err) => {
-            return err
+            "messages": data,
+        }).then((response) => {
+            return response
         })
+            .catch((error) => {
+                console.error('请求错误:', error);
+            });
     }
     //查询loading
     const [btnloading, setBtnloading] = useState(false)
@@ -61,9 +62,11 @@ export default () => {
             //第一个更改数组
             setMessageData(newdata)
             const resdata = await chatApi(newdata)
+            // return 
             setBtnloading(false)
             if (resdata?.status === 200) {
-                const repdata = resdata?.data.choices[0].message
+                console.log(resdata)
+                const repdata = resdata?.data.choices?.[0].message
                 setMessageData((item) => [...item, repdata])
             } else {
                 message.error(resdata.message);
@@ -71,7 +74,6 @@ export default () => {
         } else {
             message.warning('你没有输入内容呦');
         }
-
     }
     const truncateData = (data, maxLength) => {
         //超出长度删除函数

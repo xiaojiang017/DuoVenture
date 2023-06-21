@@ -6,6 +6,7 @@ import Drag from "../common/project/drag/index.tsx";
 import Chat from "../common/project/chat/index.jsx";
 import UserMessage from "../common/project/userMessage/index.jsx";
 import Earningedtail from "../common/project/earnings/earningedtail.jsx";
+import GeneratingImage from "../common/project/generatingImage/index.jsx";
 
 const rout = [
     {
@@ -39,6 +40,10 @@ const rout = [
     {
         path: '/project/earning',
         component: Earningedtail  
+    },
+    {
+        path: '/project/image',
+        component: GeneratingImage  
     }
 ]
 

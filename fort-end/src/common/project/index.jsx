@@ -11,7 +11,8 @@ import {
     DragOutlined,
     WechatOutlined,
     UserSwitchOutlined,
-    BarChartOutlined
+    BarChartOutlined,
+    FileImageOutlined
 } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom';
@@ -77,6 +78,12 @@ export default () => {
             label: '聊天',
             icon: <WechatOutlined />,
             key: "/project/chat",
+            type: 1
+        },
+        {
+            label: '生成图片',
+            icon: <FileImageOutlined />,
+            key: "/project/image",
             type: 1
         },
         {
