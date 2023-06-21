@@ -5,7 +5,7 @@ import axios from 'axios';
 export default () => {
     const [url, setUrl] = useState([])
     const [imgloading , setImgloading] = useState(false)
-    const [apikey, setApikey] = useState('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')
+    const [apikey, setApikey] = useState('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')
     //为了吧apikey暴露出去，选择将api写在组件里面，后面有好的想法在改回去
     const axiosInstance = axios.create({
         timeout: 200000,

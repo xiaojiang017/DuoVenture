@@ -5,7 +5,7 @@ import { message, Modal, Form, Input } from 'antd';
 import axios from 'axios';
 
 export default () => {
-    const [apikey, setApikey] = useState('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')
+    const [apikey, setApikey] = useState('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')
     //为了吧apikey暴露出去，选择将api写在组件里面，后面有好的想法在改回去
     const axiosInstance = axios.create({
         timeout: 200000,
@@ -39,7 +39,7 @@ export default () => {
             return response
         })
             .catch((error) => {
-                console.error('请求错误:', error);
+                return error
             });
     }
     //查询loading
@@ -116,7 +116,7 @@ export default () => {
 
     return (
         <div>
-            <div style={{ textAlign: 'center' }}>说明：聊天记录报错在本地，每次刷新会清空聊天记录。apikey可能会过期，更改apikey请点击<a onClick={() => setIsModalOpen(true)}>这里</a>，更多消息请关注公众号：阿九网创</div>
+            <div style={{ textAlign: 'center' }}>说明：聊天记录保存在本地，每次刷新会清空聊天记录。apikey可能会过期，更改apikey请点击<a onClick={() => setIsModalOpen(true)}>这里</a>，更多消息请关注公众号：阿九网创</div>
             <div className='dv_project_chat_home'>
                 <ChatList chatlist={chatlist} setChatlist={setChatlist} setMessageKey={setMessageKey} />
                 <ChatRoom onclickfunc={onclickfunc} messageData={messageData} btnloading={btnloading} />

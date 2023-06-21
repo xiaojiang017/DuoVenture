@@ -27,11 +27,11 @@ export default (props) => {
                     messageData?.map((item, index) => {
                         return <div style={{ display: 'flex', justifyContent: item.role === 'user' ? 'flex-end' : 'flex-start' }}>
                             {
-                               item.role !== 'user' && <img src={item.role === 'user' ? userSvg : systemSvg} alt="My SVG"/>
+                               item.role !== 'user' && <div><img src={item.role === 'user' ? userSvg : systemSvg} alt="My SVG"/></div>
                             }
                             <div key={index} className={item.role === 'user' ? 'dv_project_chat_room_user' : 'dv_project_chat_room_system'}>{item.content}</div>
                            {
-                                item.role === 'user' && <img src={item.role === 'user' ? userSvg : systemSvg} alt="My SVG" />
+                                item.role === 'user' && <div><img src={item.role === 'user' ? userSvg : systemSvg} alt="My SVG" /></div>
                            }
                             </div>
                     })
